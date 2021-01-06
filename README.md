@@ -1,5 +1,10 @@
 # Period
 
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/cyrildever/period)
+![GitHub last commit](https://img.shields.io/github/last-commit/cyrildever/period)
+![GitHub issues](https://img.shields.io/github/issues/cyrildever/period)
+![GitHub](https://img.shields.io/github/license/cyrildever/period)
+
 A _Period_ is a predefined range of milliseconds during which operations may happen.
 It has an `ID`, ie. the number of _Periods_ elapsed since the original _Period_ set at initialization.
 You can also get its start and end timestamps.
