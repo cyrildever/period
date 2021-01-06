@@ -39,6 +39,12 @@ func Init(originTimestamp, periodSpan uint64, isTestEnvironment ...bool) error {
 	return nil
 }
 
+// ResetOriginTimestamp allows to force a new setting of the begin of the time.
+// NB: Use with caution as all previous calculations might go wrong.
+func ResetOriginTimestamp(newTimestamp uint64) {
+	beginningTimestamp = newTimestamp
+}
+
 //--- TYPES
 
 // Period ...

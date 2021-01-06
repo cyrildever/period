@@ -23,7 +23,7 @@ func TestGetDuration(t *testing.T) {
 // TestNext ...
 func TestNext(t *testing.T) {
 	err := period.Init(0, 10000, true)
-	if err != nil {
+	if _, ok := err.(*period.AlreadyInitializedError); err != nil && !ok {
 		t.Fatal(err)
 	}
 	p, err := period.Get(1)
@@ -34,4 +34,21 @@ func TestNext(t *testing.T) {
 
 	next := p.Next()
 	assert.Equal(t, next.ID, p.ID+1)
+}
+
+// TestResetOriginTimestamp ...
+func TestResetOriginTimestamp(t *testing.T) {
+	err := period.Init(0, 10000, true)
+	if _, ok := err.(*period.AlreadyInitializedError); err != nil && !ok {
+		t.Fatal(err)
+	}
+	p, err := period.Get(1)
+	if err != nil {
+		t.Fatal(err)
+	}
+	assert.Equal(t, p.StartTimestampMillis(), uint64(0))
+
+	var newTimestamp uint64 = 123
+	period.ResetOriginTimestamp(newTimestamp)
+	assert.Equal(t, p.StartTimestampMillis(), newTimestamp)
 }
