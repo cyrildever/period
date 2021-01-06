@@ -18,7 +18,11 @@ var (
 //
 // It needs two mandatory arguments: an origin timestamp and a non-null period span (both in milliseconds),
 // and an optional argument (passing it `true` if this is a test environment).
+// It may throw an `AlreadyInitializedError` because the period module can't be initialized twice.
 func Init(originTimestamp, periodSpan uint64, isTestEnvironment ...bool) error {
+	if initialized {
+		return NewAlreadyInitializedError()
+	}
 	if periodSpan == 0 {
 		return errors.New("period span can't be null")
 	}
@@ -126,4 +130,22 @@ func Span() uint64 {
 
 func IsTestEnvironment() bool {
 	return timestamp.InTestEnvironment
+}
+
+//-- ERRORS
+
+// AlreadyInitializedError ...
+type AlreadyInitializedError struct {
+	message string
+}
+
+func (e *AlreadyInitializedError) Error() string {
+	return e.message
+}
+
+// NewAlreadyInitializedError ...
+func NewAlreadyInitializedError() *AlreadyInitializedError {
+	return &AlreadyInitializedError{
+		message: "period already initialized",
+	}
 }
