@@ -8,6 +8,10 @@ import (
 	"github.com/cyrildever/period/timestamp"
 )
 
+// The period module is a shared module, meaning once initialized you can't have different instance of it.
+// In other words, its common parameters (begin of time, span) are set once and for all.
+// Only test environment could be changed at will (through the `period.SetTestEnvironment()` function).
+
 var (
 	initialized        bool
 	beginningTimestamp uint64
@@ -130,6 +134,11 @@ func Span() uint64 {
 
 func IsTestEnvironment() bool {
 	return timestamp.InTestEnvironment
+}
+
+func SetTestEnvironment(isTest bool) bool {
+	timestamp.InTestEnvironment = isTest
+	return IsTestEnvironment()
 }
 
 //-- ERRORS

@@ -57,6 +57,9 @@ if p.Next().ID != p.ID + 1 {
 ```golang
 // Mandatory initialization
 err := period.Init(originTimestamp, periodSpan, isTestEnvironment)
+if _, ok := err.(*period.AlreadyInitializedError); !ok {
+    // Do something with any error other than period already initialized
+}
 
 // To get the current Period
 currentPeriod, err := period.Current()
@@ -76,6 +79,9 @@ end := currentPeriod.EndTimestampMillis()
 
 // To get one's following Period
 nextPeriod := currentPeriod.Next()
+
+// Unset test environment
+isTest := period.SetTestEnvironment(false)
 ```
 
 
