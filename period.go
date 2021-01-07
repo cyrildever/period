@@ -15,7 +15,7 @@ import (
 var (
 	initialized        bool
 	beginningTimestamp uint64
-	span               uint64
+	span               uint64 = 10000
 )
 
 // Init must be called before anything, otherwise a panic may occur.

@@ -52,3 +52,9 @@ func TestResetOriginTimestamp(t *testing.T) {
 	period.ResetOriginTimestamp(newTimestamp)
 	assert.Equal(t, p.StartTimestampMillis(), newTimestamp)
 }
+
+// TestSpan ...
+func TestSpan(t *testing.T) {
+	defaut := period.Span()
+	assert.Equal(t, defaut, uint64(10000))
+}
