@@ -3,6 +3,6 @@ module github.com/cyrildever/period
 go 1.15
 
 require (
-	github.com/cyrildever/go-utls v1.3.11
+	github.com/cyrildever/go-utls v1.3.12
 	gotest.tools v2.2.0+incompatible
 )
