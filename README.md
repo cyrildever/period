@@ -35,7 +35,7 @@ import (
     "github.com/cyrildever/period/timestamp"
 )
 
-currentTimestamp := timestamp.CurrentMillis()
+currentTimestamp, err := timestamp.CurrentMillis()
 p := period.Get(currentTimestamp)
 
 if currentTimestamp != p.StartTimestampMillis() {
@@ -49,7 +49,13 @@ if p.Next().ID != p.ID + 1 {
 }
 ```
 
-**IMPORTANT:** You might want to notice that, as there is no year zero in the Gregorian calendar, the first _Period_ ID is `1` (not `0` as we, computer engineers, like to start our arrays).
+**IMPORTANT:** You might want to notice that, as there is no year zero in the Gregorian calendar, the first _Period_ ID is `1` (not `0` as we, computer engineers, generally like to start our arrays).
+
+
+NB: You should set a NTP server somewhere but, if you don't, you still can get the current timestamp of the machine running your program by passing `true` as an argument to the `CurrentMillis` function, eg.
+```golang
+currentTimestamp, _ := timestamp.CurrentMillis(true)
+```
 
 
 ### API
