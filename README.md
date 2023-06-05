@@ -93,7 +93,7 @@ isTest := period.SetTestEnvironment(false)
 
 ### License
 
-This module is distributed under a MIT license.
+This module is distributed under a MIT license. \
 See the [LICENSE](LICENSE) file.
 
 
